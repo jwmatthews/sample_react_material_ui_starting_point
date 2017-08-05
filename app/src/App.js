@@ -1,66 +1,43 @@
 import React, { Component } from 'react';
+
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider, connect } from 'react-redux'
+
+import createHistory from 'history/createBrowserHistory'
+import { Route } from 'react-router'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+
 import injectTapEventPlugin from "react-tap-event-plugin"
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from 'material-ui/Dialog';
 
 import withRoot from './components/withRoot';
+import * as reducers from './reducers'
+
+import Home from './Home'
+import Secret from './Secret'
 
 injectTapEventPlugin();
 
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 200,
-  },
-};
+const history = createHistory()
+const middleware = routerMiddleware(history)
+const store = createStore(
+  combineReducers({
+    ...reducers,
+    router: routerReducer
+  }),
+  applyMiddleware(middleware)
+)
 
 class App extends Component {
-  state = {
-    open: false,
-  };
-
-  handleRequestClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
   render() {
     return (
-      <div className="App" style={styles.container} >
-        <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
-          <DialogTitle>Super Secret Password</DialogTitle>
-          <DialogContent>
-            <DialogContentText>1-2-3-4-5</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button color="primary" onClick={this.handleRequestClose}>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Typography type="display1" gutterBottom>
-          Material-UI
-        </Typography>
-        <Typography type="subheading" gutterBottom>
-          example project
-        </Typography>
-        <Button raised color="accent" onClick={this.handleClick}>
-          Super Secret Password
-        </Button>
-      </div>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <div>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/secret" component={Secret}/>
+          </div>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }
