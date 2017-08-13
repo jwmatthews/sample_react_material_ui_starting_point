@@ -1,9 +1,39 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { JssProvider } from 'react-jss';
+import { connect } from 'react-redux'
+
 import { withStyles, createStyleSheet, MuiThemeProvider } from 'material-ui/styles';
 import createContext from '../styles/createContext';
+
+
+// Adding a connection to the redux store so we may change look/feel based on state
+//
+// Actions
+//
+const changeThemeType = (themeType) => {
+  console.log(`changeThemeType(${themeType})`);
+  return {
+    type: 'CHANGE_THEME_TYPE',
+    theme_type: themeType,
+  }
+}
+const mapStateToProps = (state, ownProps) => {
+  console.log(`withRoot:mapStateToProps invoked, \n\tstate='${JSON.stringify(state)}', \n\townProps='${JSON.stringify(ownProps)}'`)
+  return {
+    themeType: state.theme.themeType,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  console.log("mapDispatchToProps invoked")
+  return {
+    changeThemeType:  () => dispatch(changeThemeType()),
+  }
+}
+
 
 // Apply some reset
 const styleSheet = createStyleSheet(theme => ({
@@ -15,6 +45,7 @@ const styleSheet = createStyleSheet(theme => ({
     },
     body: {
       margin: 0,
+      height: "100%",
     },
   },
 }));
@@ -22,8 +53,6 @@ const styleSheet = createStyleSheet(theme => ({
 let AppWrapper = props => props.children;
 
 AppWrapper = withStyles(styleSheet)(AppWrapper);
-
-const context = createContext();
 
 function withRoot(BaseComponent) {
   class WithRoot extends Component {
@@ -36,6 +65,7 @@ function withRoot(BaseComponent) {
     }
 
     render() {
+      let context = createContext(this.props.themeType)
       return (
         <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
           <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
@@ -48,9 +78,26 @@ function withRoot(BaseComponent) {
     }
   }
 
+  WithRoot.propTypes = {
+    themeType: PropTypes.string.isRequired,
+  };
+  WithRoot.defaultProps = {
+    themeType: 'light',
+  };
   WithRoot.displayName = `withRoot(${BaseComponent.displayName})`;
 
-  return WithRoot;
+  const WithRootAndStore = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(WithRoot)
+
+  //const WithRootAndStore = connect(
+  //  () => {},
+  //  () => {}
+  //)(WithRoot)
+
+  //return WithRoot;
+  return WithRootAndStore;
 }
 
 export default withRoot;

@@ -18,11 +18,10 @@ const styles = {
   },
 };
 
-const SecretView = ({ foo, isOpen, handleOpen, handleClose }) => {
+const SecretView = ({ isOpen, handleOpen, handleClose }) => {
   console.log(`SecretView::render() isOpen=${JSON.stringify(isOpen)}`);
   return (
     <div className="SecretView" style={styles.container} >
-      <h4>{foo}</h4>
       <Dialog open={isOpen} onRequestClose={handleClose}>
         <DialogTitle>Super Secret Password</DialogTitle>
         <DialogContent>
@@ -46,5 +45,11 @@ const SecretView = ({ foo, isOpen, handleOpen, handleClose }) => {
     </div>
   );
 }
+
+SecretView.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleOpen: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};
 
 export default SecretView;

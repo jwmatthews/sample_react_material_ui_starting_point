@@ -4,18 +4,18 @@ import Typography from 'material-ui/Typography';
 const styles = {
   container: {
     textAlign: 'center',
-    paddingTop: 0,
+    paddingTop: 200,
   },
 };
 
-const Home = () => {
+const Login = () => {
   return (
-    <div className="Home" style={styles.container} >
+    <div className="Login" style={styles.container} >
       <Typography type="display1" gutterBottom>
-        Welcome!
+        Login Page!
       </Typography>
     </div>
   );
 }
 
-export default Home;
+export default Login;

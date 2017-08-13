@@ -16,7 +16,7 @@ const handleClose = () => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(`mapStateToProps invoked, \n\tstate="${JSON.stringify(state)}", \n\townProps="${JSON.stringify(ownProps)}"`)
+  console.log(`Secret::mapStateToProps invoked, \n\tstate="${JSON.stringify(state)}", \n\townProps="${JSON.stringify(ownProps)}"`)
   return {
     isOpen: state.secret.isOpen,
   }
