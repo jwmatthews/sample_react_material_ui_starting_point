@@ -11,24 +11,39 @@ import SimpleMenu from './SimpleMenu'
 import UndockedDrawer from './UndockedDrawer'
 
 const styleSheet = createStyleSheet(theme => ({
-  root: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-  }),
+  root: {
+    flexGrow: 1,
+    marginTop: 30,
+  },
+  paper: {
+    padding: 16,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  //root: theme.mixins.gutters({
+  //  paddingTop: 16,
+  //  paddingBottom: 16,
+  //}),
 }));
 
 const ColorList = (props) => {
   const classes = props.classes;
   return (
-    <div className="ColorList" className={classes.container} >
-      <Paper className={classes.root} elevation={4}>
-         <Typography type="headline" component="h3">
-           This is a sheet of paper.
-         </Typography>
-         <Typography type="body1" component="p">
-           Paper can be used to build surface or other elements for your application.
-         </Typography>
-       </Paper>
+    <div className={classes.root}>
+      <Grid container spacing={24}>
+        <Grid item xs={3} />
+        <Grid item xs={6}>
+          <Paper className={classes.paper} elevation={4}>
+             <Typography type="headline" component="h3">
+               This is a sheet of paper.
+             </Typography>
+             <Typography type="body1" component="p">
+               Paper can be used to build surface or other elements for your application.
+             </Typography>
+           </Paper>
+        </Grid>
+        <Grid item xs={3} />
+      </Grid>
     </div>
   );
 }

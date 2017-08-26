@@ -1,5 +1,12 @@
 # Notes
 
+## Running this sample app
+1. cd app
+1. npm install -g yarn
+1. npm install
+1. yarn install
+1. yarn start
+
 ## Installing material-ui
 
 1. npm install -S material-ui@next react-tap-event-plugin material-ui-icons
@@ -42,6 +49,8 @@ const store = createStore(reducer, composeWithDevTools(
   * https://github.com/erikras/redux-form
   * http://redux-form.com/7.0.3/
 
+## Editor notes
+  * ```apm install react```
 
 ## Blog Posts
   * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
