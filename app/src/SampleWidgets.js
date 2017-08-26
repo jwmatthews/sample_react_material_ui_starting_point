@@ -1,7 +1,6 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
 
-import ColorList from './ColorList'
 import SimpleMenu from './SimpleMenu'
 import UndockedDrawer from './UndockedDrawer'
 
@@ -20,7 +19,6 @@ const SampleWidgets = () => {
       <Typography type="display1" gutterBottom>
         Welcome!
       </Typography>
-      <ColorList/>
     </div>
   );
 }

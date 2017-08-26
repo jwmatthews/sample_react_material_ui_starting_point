@@ -7,6 +7,13 @@
 1. yarn install
 1. yarn start
 
+## Next Items to Work On:
+1. Create a login page
+1. Create a sample backend for auth
+1. Make Header/Footer sticky
+
+
+
 ## Installing material-ui
 
 1. npm install -S material-ui@next react-tap-event-plugin material-ui-icons

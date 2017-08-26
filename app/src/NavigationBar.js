@@ -120,6 +120,22 @@ class NavigationBar extends Component {
                 <ListItemText primary="Sample"/>
               </ListItem>
             </Link>
+            <Link to="/paper">
+              <ListItem button>
+                <ListItemIcon>
+                  <ListIcon />
+                </ListItemIcon>
+                <ListItemText primary="Paper"/>
+              </ListItem>
+            </Link>
+            <Link to="/color">
+              <ListItem button>
+                <ListItemIcon>
+                  <ListIcon />
+                </ListItemIcon>
+                <ListItemText primary="Colors"/>
+              </ListItem>
+            </Link>
             <Link to="/secret">
               <ListItem button>
                 <ListItemIcon>

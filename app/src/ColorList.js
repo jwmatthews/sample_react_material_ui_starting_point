@@ -1,55 +1,160 @@
+// @flow weak
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import {red, purple, deepPurple, indigo, blue, lightBlue, cyan, teal, green,
-  lightGreen, lime, yellow, amber, orange, deepOrange, brown, grey,
-  blueGrey } from 'material-ui/colors';
-import Paper from 'material-ui/Paper'
-import SimpleMenu from './SimpleMenu'
-import UndockedDrawer from './UndockedDrawer'
+import * as colors from 'material-ui/colors';
+import { getContrastRatio } from 'material-ui/styles/colorManipulator';
 
-const styleSheet = createStyleSheet(theme => ({
-  root: {
-    flexGrow: 1,
-    marginTop: 30,
-  },
-  paper: {
-    padding: 16,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  //root: theme.mixins.gutters({
-  //  paddingTop: 16,
-  //  paddingBottom: 16,
-  //}),
-}));
+const mainColors = [
+  'Red',
+  'Pink',
+  'Purple',
+  'Deep Purple',
+  'Indigo',
+  'Blue',
+  'Light Blue',
+  'Cyan',
+  'Teal',
+  'Green',
+  'Light Green',
+  'Lime',
+  'Yellow',
+  'Amber',
+  'Orange',
+  'Deep Orange',
+];
+const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
+const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-const ColorList = (props) => {
+export const styles = createStyleSheet(theme => (
+  {
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      'align-items': 'center',
+      'justify-content': 'center',
+    },
+    name: {
+      marginBottom: 60,
+    },
+    blockSpace: {
+      height: 4,
+    },
+    colorContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    colorGroup: {
+      padding: '16px 0',
+      margin: '0 15px 0 0',
+      flexGrow: 1,
+      [theme.breakpoints.up('sm')]: {
+        flexGrow: 0,
+        width: '30%',
+      },
+    },
+    colorValue: {
+      ...theme.typography.caption,
+      color: 'inherit',
+    },
+  })
+);
+
+function getColorBlock(classes, colorName, colorValue, colorTitle) {
+  const bgColor = colors[colorName][colorValue];
+
+  let fgColor = colors.common.fullBlack;
+  if (getContrastRatio(bgColor, fgColor) < 7) {
+    fgColor = colors.common.fullWhite;
+  }
+
+  let blockTitle;
+  if (colorTitle) {
+    blockTitle = (
+      <div className={classes.name}>
+        {colorName}
+      </div>
+    );
+  }
+
+  let rowStyle = {
+    backgroundColor: bgColor,
+    color: fgColor,
+    listStyle: 'none',
+    padding: 15,
+  };
+
+  if (colorValue.toString().indexOf('A1') === 0) {
+    rowStyle = {
+      ...rowStyle,
+      marginTop: 4,
+    };
+  }
+
+  return (
+    <li style={rowStyle} key={colorValue}>
+      {blockTitle}
+      <div className={classes.colorContainer}>
+        <span>
+          {colorValue}
+        </span>
+        <span className={classes.colorValue}>
+          {bgColor.toUpperCase()}
+        </span>
+      </div>
+    </li>
+  );
+}
+
+function getColorGroup(options) {
+  const { classes, color, showAltPalette } = options;
+  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+  let colorsList = [];
+  colorsList = mainPalette.map(mainValue => getColorBlock(classes, cssColor, mainValue));
+
+  if (showAltPalette) {
+    altPalette.forEach(altValue => {
+      colorsList.push(getColorBlock(classes, cssColor, altValue));
+    });
+  }
+
+  return (
+    <ul className={classes.colorGroup} key={cssColor}>
+      {getColorBlock(classes, cssColor, 500, true)}
+      <div className={classes.blockSpace} />
+      {colorsList}
+    </ul>
+  );
+}
+
+function Color(props) {
   const classes = props.classes;
+
   return (
     <div className={classes.root}>
-      <Grid container spacing={24}>
-        <Grid item xs={3} />
-        <Grid item xs={6}>
-          <Paper className={classes.paper} elevation={4}>
-             <Typography type="headline" component="h3">
-               This is a sheet of paper.
-             </Typography>
-             <Typography type="body1" component="p">
-               Paper can be used to build surface or other elements for your application.
-             </Typography>
-           </Paper>
-        </Grid>
-        <Grid item xs={3} />
-      </Grid>
+      {mainColors.map(mainColor =>
+            getColorGroup({
+              classes,
+              color: mainColor,
+              showAltPalette: true,
+            }),
+      )}
+      {neutralColors.map(neutralColor =>
+          getColorGroup({
+            classes,
+            color: neutralColor,
+            showAltPalette: false,
+          }),
+      )}
     </div>
   );
 }
 
-ColorList.propTypes = {
+Color.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ColorList);
+export default withStyles(styles)(Color);
