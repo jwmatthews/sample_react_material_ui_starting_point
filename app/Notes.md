@@ -59,6 +59,11 @@ const store = createStore(reducer, composeWithDevTools(
 ## Editor notes
   * ```apm install react```
 
+## Components
+  * react-beautiful-dnd
+      * https://medium.com/@alexandereardon/rethinking-drag-and-drop-d9f5770b4e6b
+          * Doesn't yet support touch events
+
 ## Blog Posts
   * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
   * [React Redux Explained](http://www.sohamkamani.com/blog/2017/03/31/react-redux-connect-explained/)
@@ -75,3 +80,14 @@ const store = createStore(reducer, composeWithDevTools(
       * [Material UI Docs](https://material-ui-1dab0.firebaseapp.com/component-demos/app-bar)
       * [Left Nav in Material UI](https://medium.com/@sanfordb/using-material-ui-s-app-bar-with-left-nav-in-react-d9311a49b3d0)
       * [Login Form](http://redux-form.com/6.0.0-rc.1/examples/material-ui/)
+
+##Backend Notes:
+
+### OpenAPI Info
+  * https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/
+
+### OAuth Info
+  * go-lang projects:
+      * https://github.com/dghubble/gologin
+      * https://github.com/markbates/goth
+      * https://github.com/stretchr/gomniauth
