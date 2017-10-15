@@ -2,13 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 import RestoreIcon from 'material-ui-icons/Restore';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
-const styleSheet = createStyleSheet({
+const styleSheet = {
   root: {
     position: "absolute",
     right: 0,
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet({
     left: 0,
     padding: "1rem",
   },
-});
+};
 
 class SimpleBottomNavigation extends Component {
   state = {

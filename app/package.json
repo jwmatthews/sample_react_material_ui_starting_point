@@ -3,19 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "history": "^4.6.3",
+    "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.4",
-    "material-ui-icons": "^1.0.0-alpha.19",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-redux": "^5.0.5",
-    "react-router-dom": "^4.1.2",
+    "material-ui-icons": "^1.0.0-beta.15",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.6",
-    "react-scripts": "1.0.10",
-    "react-tap-event-plugin": "^2.0.1",
+    "react-scripts": "1.0.14",
+    "react-tap-event-plugin": "^3.0.2",
+    "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "typeface-roboto": "0.0.33"
+    "typeface-roboto": "0.0.41"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,5 +26,9 @@
   },
   "devDependencies": {
     "redux-devtools": "^3.4.0"
+  },
+  "resolutions": {
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
   }
 }

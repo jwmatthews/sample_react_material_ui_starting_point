@@ -3,8 +3,8 @@
 import { create } from 'jss';
 import preset from 'jss-preset-default';
 import { SheetsRegistry } from 'react-jss';
-import createPalette from 'material-ui/styles/palette';
-import createMuiTheme from 'material-ui/styles/theme';
+import createPalette from 'material-ui/styles/createPalette';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
 //import { purple, green, blue, orange, indigo, blueGrey } from 'material-ui/colors';
 import { orange, blueGrey } from 'material-ui/colors';
 

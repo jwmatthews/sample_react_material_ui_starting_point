@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
@@ -30,7 +30,7 @@ import SettingIcon from 'material-ui-icons/Settings';
 
 import AccountMenu from './AccountMenu';
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   root: {
     marginTop: 0,
     width: '100%',
@@ -45,7 +45,7 @@ const styleSheet = createStyleSheet(theme => ({
   group: {
    margin: `${theme.spacing.unit}px 0`,
  },
-}));
+});
 
 class NavigationBar extends Component {
   constructor(props, context) {

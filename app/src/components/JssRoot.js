@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { JssProvider } from 'react-jss';
 import { connect } from 'react-redux'
 
-import { withStyles, createStyleSheet, MuiThemeProvider } from 'material-ui/styles';
+import { withStyles, MuiThemeProvider } from 'material-ui/styles';
 import createContext from '../styles/createContext';
 
 
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => {
 
 
 // Apply some reset
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   '@global': {
     html: {
       background: theme.palette.background.default,
@@ -47,7 +47,7 @@ const styleSheet = createStyleSheet(theme => ({
       height: "100%",
     },
   },
-}));
+});
 
 let AppWrapper = props => props.children;
 

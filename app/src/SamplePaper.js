@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper'
 
-const styleSheet = createStyleSheet(theme => ({
+const styleSheet = theme => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -19,7 +19,7 @@ const styleSheet = createStyleSheet(theme => ({
   //  paddingTop: 16,
   //  paddingBottom: 16,
   //}),
-}));
+});
 
 const SamplePaper = (props) => {
   const classes = props.classes;

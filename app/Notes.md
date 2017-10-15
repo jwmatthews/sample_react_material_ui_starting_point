@@ -91,3 +91,5 @@ const store = createStore(reducer, composeWithDevTools(
       * https://github.com/dghubble/gologin
       * https://github.com/markbates/goth
       * https://github.com/stretchr/gomniauth
+  * nodejs/express/passport blog post with facebook auth
+      * https://medium.com/@robince885/node-js-rest-api-facebook-login-121114ee04d8
